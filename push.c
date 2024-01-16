@@ -1,0 +1,37 @@
+#include "monty.h"
+
+/**
+ * push - pushes element into stack
+ * @stack: ponter to the top of stack
+ *@element: element to push
+ * @line_number: line number where intructions appear
+ * Return:address of a new node
+ */
+stack_t *push(stack_t **stack, unsigned int line_number, int element)
+{
+	stack_t *newnode;
+
+	/* Create new node */
+	newnode = malloc(sizeof(stack_t));
+	if (newnode == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n", line_number);
+		free_stack(stack);
+		exit(EXIT_FAILURE);
+	}
+	/* Initialize the new node with the value of element*/
+	newnode->n = element;
+	/* New node is placed at the beginning of the list */
+	newnode->prev = NULL;
+	newnode->next = *stack;
+
+	/* If new node is not alone, update the following one */
+	if (*stack != NULL)
+	{
+		(*stack)->prv = newnode;
+	}
+
+	*stack = newnode;
+
+	return (newnode);
+}
