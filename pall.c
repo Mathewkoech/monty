@@ -23,7 +23,6 @@ stack_t *pall(stack_t **stack, unsigned int line_number)
 	{
 		printf("%d\n", temp->n);
 		temp = temp->next;
-		node++;
 	}
 
 	return (*stack);

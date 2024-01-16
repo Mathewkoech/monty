@@ -9,14 +9,16 @@
  */
 stack_t *push(stack_t **stack, unsigned int line_number, int element)
 {
+	const char err_message[] = "Error: malloc failed";
 	stack_t *newnode;
+	(void)line_number;
 
 	/* Create new node */
 	newnode = malloc(sizeof(stack_t));
 	if (newnode == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n", line_number);
-		free_stack(stack);
+		fprintf(stderr, err_message);
+		free (stack);
 		exit(EXIT_FAILURE);
 	}
 	/* Initialize the new node with the value of element*/
@@ -28,7 +30,7 @@ stack_t *push(stack_t **stack, unsigned int line_number, int element)
 	/* If new node is not alone, update the following one */
 	if (*stack != NULL)
 	{
-		(*stack)->prv = newnode;
+		(*stack)->prev = newnode;
 	}
 
 	*stack = newnode;
