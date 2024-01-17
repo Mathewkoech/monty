@@ -5,9 +5,8 @@
  * @stack: ponter to the top of stack
  *@element: element to push
  * @line_number: line number where intructions appear
- * Return:address of a new node
  */
-stack_t *push(stack_t **stack, unsigned int line_number, int element)
+void push(stack_t **stack, unsigned int line_number, int element)
 {
 	const char err_message[] = "Error: malloc failed";
 	stack_t *newnode;
@@ -34,6 +33,4 @@ stack_t *push(stack_t **stack, unsigned int line_number, int element)
 	}
 
 	*stack = newnode;
-
-	return (newnode);
 }
