@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 		if (line[0] == '\0')
 			continue;
 
-		opcode = strtok(line, " \n");
+		opcode = strtok(line, " $\t\n");
 		if (opcode == NULL)
 			continue;
 		if (opcode[0] == '#')
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 		}
 		if (strcmp(opcode, "push") == 0)
 		{
-			str = strtok(NULL, " \n");
+			str = strtok(NULL, " $\t\n");
 			if (str == NULL)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
