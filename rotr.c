@@ -9,19 +9,26 @@
 
 stack_t *rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
-	
+	stack_t *temp = NULL;
+	stack_t *temp1 = NULL;
 	(void)line_number;
 
-	temp = *stack;
-	while (temp->next)
-	{
-		temp = temp->next;
-	}
-	temp->next = *stack;
-	temp->prev->next = NULL;
+	if (*stack == NULL)
+		return (*stack);
+
+	if ((*stack)->next == NULL)
+		return (*stack);
+
+	temp = (*stack)->next;
+	temp1 = *stack;
+
+	for (; temp1->next != NULL; temp1 = temp1->next)
+		;
+
 	temp->prev = NULL;
-	(*stack)->prev = temp;
-	(*stack) = temp;
+	temp1->next = *stack;
+	(*stack)->next = NULL;
+	(*stack)->prev = temp1;
+	*stack = temp;
 	return (*stack);
 }
