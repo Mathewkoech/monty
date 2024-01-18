@@ -5,9 +5,8 @@
  *starting from the top of the stack
  * @stack: pointer to the top stack
  * @line_number:Line number
- * Return: the address of the first node
  */
-stack_t *pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
@@ -16,7 +15,7 @@ stack_t *pall(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL)
 	{
-		return (NULL);
+		return;
 	}
 
 	while (temp != NULL)
@@ -24,6 +23,4 @@ stack_t *pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", temp->n);
 		temp = temp->next;
 	}
-
-	return (*stack);
 }

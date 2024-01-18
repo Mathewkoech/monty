@@ -1,18 +1,17 @@
 #include "monty.h"
-/**
- * main - Interprets bytecode
+
+ /** main - Interprets bytecode
  * @argc: number of arguments
  * @argv: array of arguments
  * Return: 0 on success
  */
+
 int main(int argc, char *argv[])
 {
 	FILE *file;
-	char nline, *file_line = NULL;
-	size_t fLine_len = 0;
-	ssize_t char_read;
-
-	/*stack_t *stack = NULL;*/
+	stack_t *stack = NULL;
+	char file_line[100];
+	size_t line_len = 0;
 	unsigned int lines = 0;
 
 	if (argc != 2)
@@ -21,6 +20,8 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	
+	printf("argv[1]: %s\n", argv[1]);
+
 	/*open bytecode file*/
 	file = fopen(argv[1], "r");
 
@@ -31,21 +32,22 @@ int main(int argc, char *argv[])
 	}
 
 	/* Program to count the Number of Lines and get the line in the Text File */
-	char_read = getline(&file_line, &fLine_len, file);
-
 	/*Loop through till we are done with the file*/
-	while (char_read >= 0)
+
+	printf("JUst above while loop\n");
+	while (fgets(file_line, sizeof(file_line), file) != NULL)
 	{
-		lines += 1;
+		++lines;
+		/*Remove newline character from the end of the line*/
+		line_len = strlen(file_line);
+		if (line_len > 0 && file_line[line_len - 1] == '\n')
+			file_line[line_len - 1] = '\0';
 
-		/*program to execute the commands from opfile: HERE*/
-
-		/*go to the next line*/
-		char_read = getline(&file_line, &fLine_len, file);
+		printf("READ: %s\n", file_line);
+		get_instruction(&stack, lines, file_line);
 	}
 
-	free(file_line);
-	file_line = NULL;
+	printf("Below while loop\n");
 
 	fclose(file);
 
