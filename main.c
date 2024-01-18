@@ -1,26 +1,27 @@
 #include "monty.h"
+
 /**
-* main - Interprets bytecode
-* @argc: number of arguments
-* @argv: array of arguments
-* Return: 0 on success
-*/
-int element = 1;
+ * main - Interprets bytecode
+ * @argc: number of arguments
+ * @argv: array of arguments
+ * Return: 0 on success
+ */
 
 int main(int argc, char *argv[])
 {
 	FILE *file;
-	char line[MAX_LINE_LEN];
-	size_t line_len = 0;
-	char *opcode, *str;
 	stack_t *stack = NULL;
-	unsigned int line_number = 0, i = 0;
+	char file_line[100];
+	size_t line_len = 0;
+	unsigned int lines = 0;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
+
+	/*open bytecode file*/
 	file = fopen(argv[1], "r");
 
 	if (!file)
@@ -30,47 +31,20 @@ int main(int argc, char *argv[])
 	}
 
 	/* Program to count the Number of Lines and get the line in the Text File */
-	while (fgets(line, MAX_LINE_LEN, file) != NULL)
-	{
-		line_number++;
-		line_len = strlen(line);
-		if (line[line_len - 1] == '\n')
-			line[line_len - 1] = '\0';
-		if (line[0] == '\0')
-			continue;
+	/*Loop through till we are done with the file*/
 
-		opcode = strtok(line, " $\t\n");
-		if (opcode == NULL)
-			continue;
-		if (opcode[0] == '#')
-		{
-			nop(&stack, line_number);
-			continue;
-		}
-		if (strcmp(opcode, "push") == 0)
-		{
-			str = strtok(NULL, " $\t\n");
-			if (str == NULL)
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", line_number);
-				fclose(file);
-				exit(EXIT_FAILURE);
-			}
-			if (str[0] == '-' && str[1] != '\0')
-				i = 1;
-			for (; str[i] != '\0'; i++)
-			{
-				if (isdigit(str[i]) == 0)
-				{
-					fprintf(stderr, "L%d: usage: push integer\n", line_number);
-					fclose(file);
-					exit(EXIT_FAILURE);
-				}
-			}
-			element = atoi(str);
-		}
-		opcode_(opcode, &stack, line_number)(&stack, line_number);
-			}
+	while (fgets(file_line, sizeof(file_line), file) != NULL)
+	{
+		++lines;
+		/*Remove newline character from the end of the line*/
+		line_len = strlen(file_line);
+		if (line_len > 0 && (file_line[line_len - 1] == '\n'))
+			file_line[line_len - 1] = '\0';
+
+		get_instruction(&stack, lines, file_line);
+	}
+
 	fclose(file);
+
 	return (0);
 }

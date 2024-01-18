@@ -5,7 +5,7 @@
  * @stack: Pointer to the top of the stack
  * @line_number: Line number where the instruction appears
  */
-stack_t *pint(stack_t **stack, unsigned int line_number)
+void pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
 	{
@@ -13,5 +13,4 @@ stack_t *pint(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", ((*stack)->n));
-	return (*stack);
 }

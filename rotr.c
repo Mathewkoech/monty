@@ -32,3 +32,4 @@ stack_t *rotr(stack_t **stack, unsigned int line_number)
 	*stack = temp;
 	return (*stack);
 }
+
