@@ -1,36 +1,33 @@
 #include "monty.h"
 
 /**
-  * swap -  swaps the top two elements of the stack.
-  * @stack: structure containing the stack
-  * @line_number: line number of the opcode in the file
-  */
-
-void swap(stack_t **stack, unsigned int line_number)
+ * swap - swaps the top two elements of the stack
+ * @stack: ponter to the list stack
+ * @line_number: line number
+ * Return: Returns address of the first node
+ */
+stack_t *swap(stack_t **stack, unsigned int line_number)
 {
-	int i = 1;
-	stack_t *temp;
+	stack_t *head;
+	int temp;
 
-	while ((*stack)->next != NULL)
-		i++;
+	(void)line_number;
 
-	if (i < 2)
+	head = *stack;
+
+	if (head != NULL || head->next != NULL)
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short", line_number);
+		temp = head->n;
+		head->n = head->next->n;
+		head->next->n = temp;
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n",
+			line_number);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 
-	temp = (stack_t *) malloc(sizeof(stack_t *));
-
-	if (!temp)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
-	temp = (*stack)->next;
-	(*stack)->next = *stack;
-	*stack = temp;
-
-	free(temp);
+	return (*stack);
 }

@@ -1,37 +1,28 @@
 #include "monty.h"
 
 /**
-  * sub -  sbtracts the top element from the second of the stack.
-  * @stack: structure containing the stack
-  * @line_number: line number of the opcode in the file
-  */
-
-void sub(stack_t **stack, unsigned int line_number)
+ *sub-subtracts the top element of the stack
+ *from the second top element of the stack
+ *@stack:pointer to top stack
+ *@line_number:line number with instructions
+ *Return: pointer
+ */
+stack_t *sub(stack_t **stack, unsigned int line_number)
 {
-	int i = 1;
-	stack_t *temp;
+	int diff = 0;
+	stack_t *head = *stack;
 
-	while ((*stack)->next != NULL)
-		i++;
-
-	if (i < 2)
+	if (!head || !head->next)
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short", line_number);
+		/* Print error, free, and exit */
+		fprintf(stderr, "L%d: can't sub, stack too short\n",
+line_number);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
+	diff = (head->next->n) - (head->n);
+	head->next->n = diff;
+	pop(stack, 0);
 
-	temp = (stack_t *) malloc(sizeof(stack_t *));
-
-	if (!temp)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
-	temp = *stack;
-
-	(*stack)->next->n -= (*stack)->n;
-	*stack = (*stack)->next;
-
-	free(temp);
+	return (*stack);
 }

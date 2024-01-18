@@ -1,38 +1,26 @@
 #include "monty.h"
 
 /**
-  * add -  adds the top two elements of the stack.
-  * @stack: structure containing the stack
-  * @line_number: line number of the opcode in the file
-  */
-
-void add(stack_t **stack, unsigned int line_number)
+*add-adds the top two elements of the stack.
+*@stack:pointer to top stack
+*@line_number:line number with instructions
+*Return: pointer
+*/
+stack_t *add(stack_t **stack, unsigned int line_number)
 {
-	int i = 1;
-	stack_t *temp;
+	int result = 0;
+	stack_t *head = *stack;
 
-	while ((*stack)->next != NULL)
-		i++;
-
-	if (i < 2)
+	if (!head || !head->next)
 	{
-		fprintf(stderr, "L%u: can't swap, stack too short", line_number);
+		fprintf(stderr, "L%u: can't add, stack too short\n",
+			line_number);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
+	result = (head->next->n) + (head->n);
+	head->next->n = result;
+	pop(stack, 0);
 
-	temp = (stack_t *) malloc(sizeof(stack_t *));
-
-	if (!temp)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
-	temp = *stack;
-
-	(*stack)->next->n += (*stack)->n;
-	*stack = (*stack)->next;
-
-	free(temp);
+	return (*stack);
 }
-
