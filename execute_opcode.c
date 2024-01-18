@@ -17,6 +17,7 @@ stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
 		{"nop", nop},
 		{"div", _div},
 		{"sub", sub},
+		{"pstr", pstr},
 		{"add", add},
 		{"mul", _mul},
 		{"swap", swap},
