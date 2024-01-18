@@ -7,17 +7,17 @@
  *Return:pointer to new stack
  */
 
-stack_t *rotr(stack_t **stack, unsigned int line_number)
+void rotr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = NULL;
 	stack_t *temp1 = NULL;
 	(void)line_number;
 
 	if (*stack == NULL)
-		return (*stack);
+		return;
 
 	if ((*stack)->next == NULL)
-		return (*stack);
+		return;
 
 	temp = (*stack)->next;
 	temp1 = *stack;
@@ -30,6 +30,4 @@ stack_t *rotr(stack_t **stack, unsigned int line_number)
 	(*stack)->next = NULL;
 	(*stack)->prev = temp1;
 	*stack = temp;
-	return (*stack);
 }
-

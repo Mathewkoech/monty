@@ -1,11 +1,12 @@
 #include "monty.h"
 
 /**
-  * sub -  sbtracts the top element from the second of the stack.
-  * @stack: structure containing the stack
-  * @line_number: line number of the opcode in the file
-  */
-
+ *sub-subtracts the top element of the stack
+ *from the second top element of the stack
+ *@stack:pointer to top stack
+ *@line_number:line number with instructions
+ *Return: pointer
+ */
 void sub(stack_t **stack, unsigned int line_number)
 {
 	int diff = 0;

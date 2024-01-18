@@ -11,8 +11,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define _GNU_SOURCE
-
+extern int element;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -43,18 +42,24 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void get_instruction(stack_t **stack, unsigned int line_number, char *file_line);
-void executeInstruction(stack_t **stack, instruction_t *instructions, size_t numInstructions, char *opcode, unsigned int line_number, char *file_line);
-void pint(stack_t **stack, unsigned int line_number);
-void push(stack_t **stack, unsigned int line_number, char *file_line);
-void pall(stack_t **stack, unsigned int line_number);
-void nop(stack_t **stack, unsigned int line_number);
-void add(stack_t **stack, unsigned int line_number);
-void sub(stack_t **stack, unsigned int line_number);
-void swap(stack_t **stack, unsigned int line_number);
-void pop(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t **stack);
-stack_t *rotr(stack_t **stack, unsigned int line_number);
-stack_t *rotl(stack_t **stack, unsigned int line_number);
-
+void _div(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack , unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
+int main(int argc, char *argv[]);
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+void opcode_(char *p, stack_t **stack, unsigned int line_number);
+/*stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
+**stack, unsigned int line_number);*/
 #endif

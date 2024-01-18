@@ -5,6 +5,7 @@
  *starting from the top of the stack
  * @stack: pointer to the top stack
  * @line_number:Line number
+ * Return: the address of the first node
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
@@ -23,5 +24,4 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", temp->n);
 		temp = temp->next;
 	}
-	/*free(temp);*/
 }
