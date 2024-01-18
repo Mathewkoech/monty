@@ -11,7 +11,9 @@
 #include <string.h>
 #include <ctype.h>
 
+#define MAX_LINE_LEN 100
 extern int element;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer

@@ -7,8 +7,6 @@
 */
 int element = 1;
 
-#define MAX_LINE_LEN 100
-
 int main(int argc, char *argv[])
 {
 	FILE *file;
