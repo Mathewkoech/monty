@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
-  * add -  adds the top two elements of the stack.
-  * @stack: structure containing the stack
-  * @line_number: line number of the opcode in the file
-  */
-
-void add(stack_t **stack, unsigned int line_number)
+*add-adds the top two elements of the stack.
+*@stack:pointer to top stack
+*@line_number:line number with instructions
+*Return: pointer
+*/
+stack_t *add(stack_t **stack, unsigned int line_number)
 {
 	int result = 0;
 	stack_t *head = *stack;
@@ -21,4 +21,6 @@ void add(stack_t **stack, unsigned int line_number)
 	result = (head->next->n) + (head->n);
 	head->next->n = result;
 	pop(stack, 0);
+
+	return (*stack);
 }
