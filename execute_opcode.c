@@ -23,6 +23,7 @@ stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
 		{"swap", swap},
 		{"mod", mod},
 		{"rotl", rotl},
+		{"pchar", pchar},
 		{"rotr", rotr},
 		{"NULL", NULL}
 	};

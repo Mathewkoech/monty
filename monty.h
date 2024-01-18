@@ -57,6 +57,7 @@ stack_t *rotl(stack_t **stack, unsigned int line_number);
 stack_t *rotr(stack_t **stack, unsigned int line_number);
 stack_t *swap(stack_t **stack, unsigned int line_number);
 stack_t *pstr(stack_t **stack, unsigned int line_number);
+stack_t *pchar(stack_t **stack, unsigned int line_number);
 stack_t *mod(stack_t **stack, unsigned int line_number);
 stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
 									**stack, unsigned int line_number);
