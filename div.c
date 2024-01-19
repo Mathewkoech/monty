@@ -10,24 +10,24 @@
 void _div(stack_t **stack, unsigned int line_number)
 {
 	int result = 0;
-	stack_t *head = *stack;
 
-	/**stack = head;*/
-
-	if (!head || !head->next)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: div, stack too short\n", line_number);
+		fprintf(stderr, "L%u: div, stack too short\n",
+		       line_number);
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-	if (head->n == 0)
+
+	if ((*stack)->n == 0)
 	{
-		fprintf(stderr, "L%u: division by zero\n", line_number);
-		/*free_stack(stack);*/
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-	result = (head->next->n) / (head->n);
-	head->next->n = result;
-
-	pop(stack, 0);
+	(*stack) = (*stack)->next;
+	result = (*stack)->n / (*stack)->prev->n;
+	(*stack)->n = result;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
 }
