@@ -4,9 +4,8 @@
  * swap - swaps the top two elements of the stack
  * @stack: ponter to the list stack
  * @line_number: line number
- * Return: Returns address of the first node
  */
-stack_t *swap(stack_t **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head;
 	int temp;
@@ -28,6 +27,4 @@ stack_t *swap(stack_t **stack, unsigned int line_number)
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
-
-	return (*stack);
 }

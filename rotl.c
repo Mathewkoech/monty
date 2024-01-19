@@ -6,7 +6,7 @@
  * @line_number: The current line number in the file
  * Return:pointer to the stack
  */
-stack_t *rotl(stack_t **stack, unsigned int line_number)
+void rotl(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head = *stack;
 
@@ -21,6 +21,4 @@ stack_t *rotl(stack_t **stack, unsigned int line_number)
 	head->next->prev = head;
 	head = head->next;
 	head->next = NULL;
-
-	return (*stack);
 }

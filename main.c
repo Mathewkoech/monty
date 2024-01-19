@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 			}
 			element = atoi(str);
 		}
-		opcode_(opcode, &stack, line_number)(&stack, line_number);
+		opcode_(opcode, &stack, line_number);
 			}
 	fclose(file);
 	return (0);

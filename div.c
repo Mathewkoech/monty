@@ -1,13 +1,13 @@
 #include "monty.h"
 
 /**
- *div-subtracts the top element of the stack
+ *_div-subtracts the top element of the stack
  *from the second top element of the stack
  *@stack:pointer to top stack
  *@line_number:line number with instructions
  *Return: pointer
  */
-stack_t *_div(stack_t **stack, unsigned int line_number)
+void _div(stack_t **stack, unsigned int line_number)
 {
 	int result = 0;
 	stack_t *head = *stack;
@@ -30,5 +30,4 @@ stack_t *_div(stack_t **stack, unsigned int line_number)
 	head->next->n = result;
 
 	pop(stack, 0);
-	return (*stack);
 }

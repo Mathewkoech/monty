@@ -7,7 +7,7 @@
  *@line_number:line number with instructions
  *Return: pointer
  */
-stack_t *sub(stack_t **stack, unsigned int line_number)
+void sub(stack_t **stack, unsigned int line_number)
 {
 	int diff = 0;
 	stack_t *head = *stack;

@@ -6,8 +6,7 @@
  * @line_number: The line number in the file
  * Return: Return corresponding pointer to the operator
  */
-stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
-**stack, unsigned int line_number)
+void opcode_(char *p, stack_t **stack, unsigned int line_number)
 {
 	instruction_t functs[] = {
 		{"push", push},
@@ -17,11 +16,13 @@ stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
 		{"nop", nop},
 		{"div", _div},
 		{"sub", sub},
+		{"pstr", pstr},
 		{"add", add},
 		{"mul", _mul},
 		{"swap", swap},
 		{"mod", mod},
 		{"rotl", rotl},
+		{"pchar", pchar},
 		{"rotr", rotr},
 		{"NULL", NULL}
 	};
@@ -33,7 +34,8 @@ stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
 		opcode = (functs[i]).opcode;
 		if (strcmp(p, opcode) == 0)
 		{
-			return (*(functs[i]).f);
+			functs[i].f(stack, line_number);
+			return;
 		}
 		i++;
 	}

@@ -2,11 +2,11 @@
 /**
  *push - pushes element into stack
  *@stack: ponter to the top of stack
- *@element: element to push
  *@line_number: line number where intructions appear
+ *Return:address of newnode
  */
 
-push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *newnode;
 

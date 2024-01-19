@@ -43,20 +43,23 @@ typedef struct instruction_s
 } instruction_t;
 
 void free_stack(stack_t **stack);
-stack_t *_div(stack_t **stack, unsigned int line_number);
-stack_t *sub(stack_t **stack, unsigned int line_number);
-stack_t *pint(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
-stack_t *nop(stack_t **stack , unsigned int line_number);
-stack_t *pop(stack_t **stack, unsigned int line_number);
-stack_t *add(stack_t **stack, unsigned int line_number);
-stack_t *_mul(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack , unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
 int main(int argc, char *argv[]);
-stack_t *rotl(stack_t **stack, unsigned int line_number);
-stack_t *rotr(stack_t **stack, unsigned int line_number);
-stack_t *swap(stack_t **stack, unsigned int line_number);
-stack_t *mod(stack_t **stack, unsigned int line_number);
-stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
-									**stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+void opcode_(char *p, stack_t **stack, unsigned int line_number);
+/*stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
+**stack, unsigned int line_number);*/
 #endif

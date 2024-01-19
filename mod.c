@@ -6,7 +6,7 @@
  * @line_number: The current line number in the file
  * Return: The pointer to the stack
  */
-stack_t *mod(stack_t **stack, unsigned int line_number)
+void mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *head = *stack;
 	int result = 0;
@@ -27,5 +27,4 @@ stack_t *mod(stack_t **stack, unsigned int line_number)
 	result = (head->next->n) % (head->n);
 	head->next->n = result;
 	pop(stack, 0);
-	return (*stack);
 }

@@ -6,7 +6,7 @@
 *@line_number:line number with instructions
 *Return: pointer
 */
-stack_t *add(stack_t **stack, unsigned int line_number)
+void add(stack_t **stack, unsigned int line_number)
 {
 	int result = 0;
 	stack_t *head = *stack;
