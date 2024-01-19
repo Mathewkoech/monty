@@ -11,14 +11,19 @@ void rotl(stack_t **stack, unsigned int line_number)
 	stack_t *head = *stack;
 
 	(void)line_number;
-	while (!head)
+
+	if (!head)
+	{
+		return;
+	}
+
+	/* Rotate the stack*/
+	while (head->next)
 	{
 		head = head->next;
 	}
+	head->next = *stack;
+	(*stack)->prev = head;
 	*stack = (*stack)->next;
-	head->next = (*stack)->prev;
 	(*stack)->prev = NULL;
-	head->next->prev = head;
-	head = head->next;
-	head->next = NULL;
 }
