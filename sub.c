@@ -23,6 +23,4 @@ line_number);
 	diff = (head->next->n) - (head->n);
 	head->next->n = diff;
 	pop(stack, 0);
-
-	return (*stack);
 }

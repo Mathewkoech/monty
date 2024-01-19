@@ -12,6 +12,7 @@
 #include <ctype.h>
 
 extern int element;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,7 +40,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
         char *opcode;
-        stack_t *(*f)(stack_t **stack, unsigned int line_number);
+        void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 void free_stack(stack_t **stack);
@@ -60,6 +61,7 @@ void pstr(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void opcode_(char *p, stack_t **stack, unsigned int line_number);
+void opcode_push(char *opcode, FILE *file, unsigned int line_number);
 /*stack_t *(*opcode_(char *p, stack_t **stack, unsigned int line_number))(stack_t
 **stack, unsigned int line_number);*/
 #endif
