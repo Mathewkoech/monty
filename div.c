@@ -16,15 +16,14 @@ void _div(stack_t **stack, unsigned int line_number)
 
 	if (!head || !head->next)
 	{
-		fprintf(stderr, "L%u: div, stack too short\n",
-		       line_number);
+		fprintf(stderr, "L%u: div, stack too short\n", line_number);
 		free_stack(stack);
 		exit(EXIT_FAILURE);
 	}
 	if (head->n == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
-		free_stack(stack);
+		/*free_stack(stack);*/
 		exit(EXIT_FAILURE);
 	}
 	result = (head->next->n) / (head->n);
